@@ -13,6 +13,11 @@ import Navbar from './components/Navbar'
 import './App.css'
 import jwt_decode from 'jwt-decode'
 
+// project route imports
+import Inventory from './components/pages/Inventory'
+import Search from './components/pages/Search'
+import Create from './components/pages/Create'
+
 function App() {
   // the currently logged in user will be stored up here in state
   const [currentUser, setCurrentUser] = useState(null)
@@ -66,13 +71,22 @@ function App() {
             element={<Login currentUser={currentUser} setCurrentUser={setCurrentUser} />}
           />
 
-          {/*optionally conditionally render auth locked routes */}
-          {/* 
-			<Route 
-			   path="/profile" 
-               element={currentUser ? <Profile handleLogout={handleLogout} currentUser={currentUser} setCurrentUser={setCurrentUser} /> : <Navigate to="/login" />}
-            /> 
-		  */}
+          <Route 
+            path="/inventory"
+            element={<Inventory currentUser={currentUser} setCurrentUser={setCurrentUser} />}
+          />
+
+          <Route 
+            path="/search"
+            element={<Search currentUser={currentUser} setCurrentUser={setCurrentUser} />}
+          />
+
+          <Route 
+            path="/create"
+            element={<Create currentUser={currentUser} setCurrentUser={setCurrentUser} />}
+          />
+
+
 
           <Route 
             path="/profile"
