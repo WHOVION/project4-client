@@ -1,9 +1,9 @@
 # StudioFits
 
 ## Team members
-Eric Nguyen
-Eszra Jimenez-Suselo
-Josh Wu 
+Eric Nguyen <br />
+Eszra Jimenez-Suselo <br />
+Josh Wu <br />
 
 ## Pitch
 StudioFits is a new innovative form of technology used to advance fasion. This millon dollar software is a clothing app designed for users to keep track of their closet. What better way but to have StudioFits to keep track of all of your clothes? Imagine a lifestyle without losing socks and t-shirts. You can depend on us to track down your clothes.
