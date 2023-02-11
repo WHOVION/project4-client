@@ -20,26 +20,26 @@ const Create = () => {
     //localStorage = web storage object that allows JS sites and apps to keep key-value pairs in web browser with no expiration date; enables developers to store and retrieve data in the browser - not good practice since data will be lost if the user clears cache
         //in this case, we are storing the jwt 
 
-    // const token = localStorage.getItem('jwt')
-    // if(!token) {
-    //     return <Navigate to="/login" />
-    // }
-    // const decoded = jwtDecode(token)
-    // console.log(decoded.id)
+    const token = localStorage.getItem('jwt')
+    if(!token) {
+        return <Navigate to="/login" />
+    }
+    const decoded = jwtDecode(token)
+    console.log(decoded.id)
 
     //submit handler function that posts the form data from state to the backend
-    // const handleSubmit = (e) => {
-    //     e.preventDefault()
-    //     const formCopy = { ...form, user: decoded.id }
-    //     // take form data from the state, post it to the backend with axios
-    //     axios.post(`${process.env.REACT_APP_SERVER_URL}/create`, formCopy) 
-    //         .then(response => {
-    //             console.log(response.data)
-    //             //once backend gets back to us, navigate to the inventory 
-    //             navigate('/inventory')
-    //         })
-    //         .catch(console.warn) 
-    // }
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const formCopy = { ...form, user: decoded.id }
+        // take form data from the state, post it to the backend with axios
+        axios.post(`${process.env.REACT_APP_SERVER_URL}/create`, formCopy) 
+            .then(response => {
+                console.log(response.data)
+                //once backend gets back to us, navigate to the inventory 
+                navigate('/inventory')
+            })
+            .catch(console.warn) 
+    }
 
     const handleOpen = (e) => {
         e.preventDefault()
@@ -48,8 +48,8 @@ const Create = () => {
 
     return ( 
         <div>
-            {/* <form onSubmit={handleSubmit}> */}
-            <form>
+            <form onSubmit={handleSubmit}>
+            {/* <form> */}
                 <div>
                     
                     <label htmlFor='nickname'>Nickname:</label>
