@@ -68,13 +68,27 @@ const Create = () => {
                         { open ? (
                             <ul className='clothing'>
                                 <li className='clothing-item'>
-                                    <button>Shirt</button> need to add onclick after button   
+                                    <button 
+                                    onClick={e => setForm({ ...form, nickname: e.target.value})}
+                                    value={form.type}
+                                    >
+                                        Shirt
+                                    </button> 
                                 </li>
                                 <li className='clothing-item'>
-                                    <button>Pants</button> need to add onclick after button
+                                    <button 
+                                    onClick={e => setForm({ ...form, nickname: e.target.value})}
+                                    value={form.type}
+                                    >
+                                        Pants
+                                    </button> 
                                 </li>
                                 <li className='clothing-item'>
-                                    <button>Shoes</button> need to add onclick after button
+                                    <button onClick={e => setForm({ ...form, nickname: e.target.value})}
+                                    value={form.type}
+                                    >
+                                        Shoes
+                                    </button> 
                                 </li>
                             </ul>
                         ): null }
