@@ -30,7 +30,7 @@ const Create = () => {
         e.preventDefault()
         const formCopy = { ...form, user: decoded.id }
         // take form data from the state, post it to the backend with axios
-        axios.post(`${process.env.REACT_APP_SERVER_URL}/create`, formCopy) 
+        axios.post(`${process.env.REACT_APP_SERVER_URL}/api-v1/create`, formCopy) 
             .then(response => {
                 console.log(response.data)
                 //once backend gets back to us, navigate to the inventory 
