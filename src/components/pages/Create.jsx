@@ -12,8 +12,6 @@ const Create = () => {
         type: '',
     })
 
-    const [open, setOpen] = useState(false)
-
     //invoke useNavigate hook to use a navigate function
     const navigate = useNavigate()
 
@@ -32,7 +30,7 @@ const Create = () => {
         e.preventDefault()
         const formCopy = { ...form, user: decoded.id }
         // take form data from the state, post it to the backend with axios
-        axios.post(`${process.env.REACT_APP_SERVER_URL}/create`, formCopy) 
+        axios.post(`${process.env.REACT_APP_SERVER_URL}/api-v1/create`, formCopy) 
             .then(response => {
                 console.log(response.data)
                 //once backend gets back to us, navigate to the inventory 
@@ -41,15 +39,10 @@ const Create = () => {
             .catch(console.warn) 
     }
 
-    const handleOpen = (e) => {
-        e.preventDefault()
-        setOpen(!open)
-    }
-
     return ( 
         <div>
             <form onSubmit={handleSubmit}>
-            {/* <form> */}
+
                 <div>
                     
                     <label htmlFor='nickname'>Nickname:</label>
@@ -61,25 +54,31 @@ const Create = () => {
                         onChange={ e => setForm({ ...form, nickname: e.target.value}) }
                     />
                     {/* pants shoes shirt */}
-                    {/* <label htmlFor='type'>Type of clothing:</label> */}
-                    <div className="dropdown">
-                        
-                        <button onClick={handleOpen}>Type of Clothing</button>
-                        { open ? (
-                            <ul className='clothing'>
-                                <li className='clothing-item'>
-                                    <button>Shirt</button> need to add onclick after button   
-                                </li>
-                                <li className='clothing-item'>
-                                    <button>Pants</button> need to add onclick after button
-                                </li>
-                                <li className='clothing-item'>
-                                    <button>Shoes</button> need to add onclick after button
-                                </li>
-                            </ul>
-                        ): null }
 
+                    <div className='dropdown'>
+                        <label htmlFor='type'>Type of Clothing</label>
+                        <select className='dropdown-content'>
+                            <option 
+                            onClick={e => setForm({ ...form, nickname: e.target.value})}
+                            value={form.type}
+                            >
+                                Shirts
+                                </option>
+                            <option 
+                            onClick={e => setForm({ ...form, nickname: e.target.value})}
+                            value={form.type}
+                            >
+                                Pants
+                            </option>
+                            <option 
+                            onClick={e => setForm({ ...form, nickname: e.target.value})}
+                            value={form.type}
+                            >
+                                Shoes
+                                </option>
+                        </select>
                     </div>
+
                     
                     <button type='submit'>Create Outfit</button>               
                 </div>
