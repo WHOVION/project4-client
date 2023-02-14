@@ -8,7 +8,7 @@ export default function Inventory(){
 
     const fetchFits = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/inventory`)
+            const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/inventory`, {headers: {'Authorization': token}})
             setFit(response.data)
         } catch(err) {
             console.warn(err)
