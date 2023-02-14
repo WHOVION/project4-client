@@ -37,22 +37,14 @@ const Search = () => {
                 <div className='search-bar'>
                     <div className='dropdown'>
                         <label htmlFor='type'>Filter</label>
-                        <select className='dropdown-content'>
-                            <option 
-                            value='shirts'
-                            >
-                                Shirts
-                            </option>
-                            <option 
-                            value='pants'
-                            >
-                                Pants
-                            </option>
-                            <option 
-                            value='shoes'
-                            >
-                                Shoes
-                            </option>
+                        <select 
+                        className='dropdown-content'
+                        onChange={e => setSearch({ ...search, type: e.target.value })}
+                        >
+                            <option value='clothing' disabled>Select</option>
+                            <option>Shirts</option>
+                            <option>Pants</option>
+                            <option>Shoes</option>
                         </select>
                     </div>
                     <input type="text" placeholder=""/><button onClick={handleChange}>Search</button>
