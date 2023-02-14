@@ -37,6 +37,9 @@ export default function Navbar({ currentUser, handleLogout }) {
 			<Link to="/search">
 				<p>Search</p>
 			</Link>
+			<Link to="/create">
+				<p>Create</p>
+			</Link>
 			<Link to="/" onClick={handleLogout}>
 				<p>Logout</p>
 			</Link>
