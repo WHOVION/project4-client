@@ -48,17 +48,23 @@ function App() {
   return (
     <Router>
       <header>
-        <Navbar 
+        {currentUser && <Navbar 
           currentUser={currentUser}
           handleLogout={handleLogout}
-        />
+        />}
+
+        {/* if logged in, navbar will display */}
+
       </header>
 
       <div className="App">
         <Routes>
           <Route 
             path="/"
-            element={<Welcome />}
+            element={<Welcome 
+              currentUser={currentUser}
+              handleLogout={handleLogout}
+            />}
           />
 
           <Route 

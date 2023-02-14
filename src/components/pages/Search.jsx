@@ -27,6 +27,7 @@ const Search = () => {
         console.log(decoded.id)
 
     return ( 
+        
         <div className="search-container">
 
             <div className='search-title'>

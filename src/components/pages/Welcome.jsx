@@ -1,4 +1,14 @@
-export default function Welcome() {
+// import userEvent from "@testing-library/user-event"
+import { useNavigate } from "react-router-dom"
+export default function Welcome({currentUser}) {
+
+	const navigate = useNavigate()
+
+	// this where logged in users are redirected
+	if (currentUser) {
+		navigate("/inventory")
+	}
+
 	return (
 		<div>
 			hello from welcome
