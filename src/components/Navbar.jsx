@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import "../App.css"
 
 export default function Navbar({ currentUser, handleLogout }) {
 	//  const loggedIn = (
@@ -30,19 +31,21 @@ export default function Navbar({ currentUser, handleLogout }) {
 	return (
 		<nav>
 			{/* user always sees this section */}
-			<Link to="/inventory">
-				<p>Inventory</p>
-			</Link>
+			<div className='Navbar'>
+				<Link to="/inventory" className='navlink'>
+					<p>Inventory</p>
+				</Link>
 
-			<Link to="/search">
-				<p>Search</p>
-			</Link>
-			<Link to="/create">
-				<p>Create</p>
-			</Link>
-			<Link to="/" onClick={handleLogout}>
-				<p>Logout</p>
-			</Link>
+				<Link to="/search" className='navlink'>
+					<p>Search</p>
+				</Link>
+				<Link to="/create" className='navlink'>
+					<p>Create</p>
+				</Link>
+				<Link to="/" onClick={handleLogout} className='navlink'>
+					<p>Logout</p>
+				</Link>
+			</div>
 
 
 
