@@ -35,7 +35,6 @@ export default function Navbar({ currentUser, handleLogout }) {
 				<Link to="/inventory" className='navlink'>
 					<p>Inventory</p>
 				</Link>
-
 				<Link to="/search" className='navlink'>
 					<p>Search</p>
 				</Link>

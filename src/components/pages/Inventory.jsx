@@ -2,6 +2,9 @@ import { useNavigate, Navigate } from 'react-router-dom'
 import jwtDecode from 'jwt-decode'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import Card from 'react-bootstrap/Card';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 export default function Inventory(){
     const [fit, setFit] = useState()
@@ -31,16 +34,34 @@ export default function Inventory(){
 			fetchData()
 	}, [])
 
+
+
+	// === !! CARDS !! === //
 	const fitComponents = fit?.map((fit, idx) => {
         return(
             <div key={`fit-${idx}`}>
-                <h2>{fit.nickname}</h2>
+				<Card style={{ width: '18rem' }}>
+					<Card.Body>
+						<Card.Title>{fit.nickname}</Card.Title>
+						<Card.Subtitle className="mb-2 text-muted">{fit.type}</Card.Subtitle>
+						<Card.Text>
+						In storage: {fit.status} <br/>
+						Had Since: {fit.createdAt}
+						</Card.Text>
+						<Card.Link href="#">Edit</Card.Link>
+						<Card.Link href="#">Delete</Card.Link>
+					</Card.Body>
+				</Card>
+                {/* <h2>{fit.nickname}</h2> */}
             </div>
         )
     })
 
+
+	
     return(
         <div>
+			
             <h1>Inventory</h1>
             {fitComponents}
         </div>
