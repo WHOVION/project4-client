@@ -34,8 +34,6 @@ export default function Inventory(){
 			fetchData()
 	}, [])
 
-
-
 	// === !! CARDS !! === //
 	const fitComponents = fit?.map((fit, idx) => {
         return(
@@ -48,8 +46,12 @@ export default function Inventory(){
 						In storage: {fit.status} <br/>
 						Had Since: {fit.createdAt}
 						</Card.Text>
-						<Card.Link href="#">Edit</Card.Link>
-						<Card.Link href="#">Delete</Card.Link>
+						<Card.Link href="#">
+							<button>Edit</button>
+						</Card.Link>
+						<Card.Link href="#">
+							<button >Delete</button>
+						</Card.Link>
 					</Card.Body>
 				</Card>
                 {/* <h2>{fit.nickname}</h2> */}
@@ -57,7 +59,15 @@ export default function Inventory(){
         )
     })
 
-
+	// const handleDeleteClick = async () => {
+	// 	try {
+	// 		// requrest the server delete
+	// 		await axios.delete(`${process.env.REACT_APP_SERVER_URL}/api-v1/inventory/${idx}}`)
+	// 		// if the update succeeds, get depete to update in 
+	// 	} catch(err) {
+	// 		console.log(err)
+	// 	}
+	// }
 	
     return(
         <div>
