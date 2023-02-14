@@ -1,4 +1,4 @@
-import { useNavigate, Navigate } from 'react-router-dom'
+import { useParams, useNavigate, Navigate } from 'react-router-dom'
 import jwtDecode from 'jwt-decode'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
@@ -9,6 +9,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 export default function Inventory(){
     const [fit, setFit] = useState()
     const navigate = useNavigate()
+
+	let { id } = useParams()
 
     useEffect(() => {
 		const fetchData = async () => {
@@ -34,8 +36,23 @@ export default function Inventory(){
 			fetchData()
 	}, [])
 
+
+	const handleDeleteClick = async (idx) => {
+		console.log(idx, 'sdlfhjlasghsj')
+		try {
+			// requrest the server delete
+			const url = `${process.env.REACT_APP_SERVER_URL}/api-v1/inventory/${idx}`
+			console.log(url)
+			await axios.delete(url)
+			// if the update succeeds, get depete to update in 
+		} catch(err) {
+			console.log(err)
+		}
+	}
+
 	// === !! CARDS !! === //
 	const fitComponents = fit?.map((fit, idx) => {
+		console.log(idx)
         return(
             <div key={`fit-${idx}`}>
 				<Card style={{ width: '18rem' }}>
@@ -50,7 +67,7 @@ export default function Inventory(){
 							<button>Edit</button>
 						</Card.Link>
 						<Card.Link href="#">
-							<button >Delete</button>
+							<button onClick={() => {handleDeleteClick(fit.id)}}>Delete</button>
 						</Card.Link>
 					</Card.Body>
 				</Card>
@@ -59,15 +76,7 @@ export default function Inventory(){
         )
     })
 
-	// const handleDeleteClick = async () => {
-	// 	try {
-	// 		// requrest the server delete
-	// 		await axios.delete(`${process.env.REACT_APP_SERVER_URL}/api-v1/inventory/${idx}}`)
-	// 		// if the update succeeds, get depete to update in 
-	// 	} catch(err) {
-	// 		console.log(err)
-	// 	}
-	// }
+	
 	
     return(
         <div>
