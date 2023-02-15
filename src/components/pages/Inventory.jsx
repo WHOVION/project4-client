@@ -40,13 +40,19 @@ export default function Inventory(){
 	const handleDeleteClick = async (idx) => {
 		console.log(idx, 'sdlfhjlasghsj')
 		try {
-			// requrest the server delete
+			// obtaining authorization
 			const token = localStorage.getItem('jwt')
+
+			// request the server delete
 			const url = `${process.env.REACT_APP_SERVER_URL}/api-v1/inventory/${idx}`
 			console.log(url)
 			await axios.delete(url, {headers: {'Authorization': token}})
-			// if the update succeeds, get depete to update in 
-			// axios.get on inventory setfit
+			
+			// if the update succeeds, get delete to update in 
+			// axios.get on inventory setFit
+			const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/inventory`, {headers: {'Authorization': token}});
+			// update page
+			setFit(response.data)
 			// set state on inventory
 		} catch(err) {
 			console.log(err)
