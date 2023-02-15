@@ -72,10 +72,10 @@ export default function Inventory(){
 						In storage: {fit.status} <br/>
 						Had Since: {fit.createdAt}
 						</Card.Text>
-						<Card.Link href="#">
+						<Card.Link>
 							<button>Edit</button>
 						</Card.Link>
-						<Card.Link >
+						<Card.Link>
 							<button onClick={() => {handleDeleteClick(fit.id)}}>Delete</button>
 						</Card.Link>
 					</Card.Body>
