@@ -7,7 +7,7 @@ import InputSearch from './InputSearch'
 
 const Search = () => {
     const [fit, setFit] = useState([]) 
-    const [originalFit, setOriginalFit] = ([])
+    const [originalFit, setOriginalFit] = useState([])
 
     // const [ fitsToDisplay, setFitsToDisplay ] = useState([])
     // const [ filterValue, setFilterValue  ] = useState('')
@@ -33,24 +33,25 @@ const Search = () => {
 
     useEffect(() => {
 		const fetchData = async () => {
-				try {
-					// get the token from local storage
-					// const token = localStorage.getItem('jwt')
-					// hit the auth locked endpoint
-					const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/inventory`, {headers: {'Authorization': token}})
-                    setFit(response.data)
-                    // this console logs all dbs clothes
-                    console.log(response.data)
-				} catch (err) {
-					// if the error is a 401 -- that means that auth failed
-					console.warn(err)
-					if (err.response) {
-						if (err.response.status === 401) {
-							// send the user to the login screen
-							navigate('/login')
-						}
-					}
-				}
+            try {
+                // get the token from local storage
+                // const token = localStorage.getItem('jwt')
+                // hit the auth locked endpoint
+                const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/inventory`, {headers: {'Authorization': token}})
+                setFit(response.data)
+                setOriginalFit(response.data)
+                // this console logs all dbs clothes
+                console.log(response.data)
+            } catch (err) {
+                // if the error is a 401 -- that means that auth failed
+                console.warn(err)
+                if (err.response) {
+                    if (err.response.status === 401) {
+                        // send the user to the login screen
+                        navigate('/login')
+                    }
+                }
+            }
 			}
 			fetchData()
 	}, [])
@@ -70,14 +71,26 @@ const Search = () => {
     // }
     
 
+    // const filteredList = (e) => {
+    //     const query = e.target.value 
+    //     // console.log(`query ${query}`)
+    //     const updatedList = fit?.filter((fit) => {
+    //         // console.log(`fit.type${fit.type}`)
+    //         return fit.type === query 
+    //     })
+    //     setFit(updatedList)
+    // }
+
     const filteredList = (e) => {
         const query = e.target.value 
-        // console.log(`query ${query}`)
-        const updatedList = fit?.filter((fit) => {
-            // console.log(`fit.type${fit.type}`)
+        if (query === 'All') {
+          setFit(originalFit)
+        } else {
+          const updatedList = originalFit?.filter((fit) => {
             return fit.type === query 
-        })
-        setFit(updatedList)
+          })
+          setFit(updatedList)
+        }
     }
 
     const fitComponents = fit?.map((fit, idx) => {
@@ -108,13 +121,11 @@ const Search = () => {
                         <select 
                         className='dropdown-content'
                         onChange={ filteredList }
-                        defaultValue='clothing'
                         >
-                            <option value='clothing' disabled>Select</option>
+                            <option>All</option> 
                             <option>Shirts</option>
                             <option>Pants</option>
                             <option>Shoes</option>
-                            <option>All</option> 
                         </select>
                     </div>
                     <input type="text" placeholder=""/><button onClick={handleChange}>Search</button>
