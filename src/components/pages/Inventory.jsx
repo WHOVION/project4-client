@@ -3,6 +3,7 @@ import jwtDecode from 'jwt-decode'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import Card from 'react-bootstrap/Card';
+import Cards from './Cards'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -67,27 +68,35 @@ export default function Inventory(){
 	const fitComponents = fit?.map((fit, idx) => {
 		console.log(idx)
         return(
-            <div key={`fit-${idx}`}>
-				<Card style={{ width: '18rem' }}>
-					<Card.Body>
-						<Card.Title>{fit.nickname}</Card.Title>
-						<Card.Subtitle className="mb-2 text-muted">{fit.type}</Card.Subtitle>
-						<Card.Text>
-						In storage: {fit.status} <br/>
-						Had Since: {fit.createdAt}
-						</Card.Text>
-						<Card.Link>
-							<button>Edit</button>
-						</Card.Link>
-						<Card.Link>
-							<button onClick={() => {handleDeleteClick(fit.id)}}>Delete</button>
-						</Card.Link>
-					</Card.Body>
-				</Card>
-                {/* <h2>{fit.nickname}</h2> */}
-            </div>
+			<Cards 
+				key={`fit-${idx}`}
+				idx={idx}
+				fit={fit}
+				handleDeleteClick={handleDeleteClick}
+			/>
+
+            // <div key={`fit-${idx}`}>
+			// 	<Card style={{ width: '18rem' }}>
+			// 		<Card.Body>
+			// 			<Card.Title>{fit.nickname}</Card.Title>
+			// 			<Card.Subtitle className="mb-2 text-muted">{fit.type}</Card.Subtitle>
+			// 			<Card.Text>
+			// 			In storage: {fit.status} <br/>
+			// 			Had Since: {fit.createdAt}
+			// 			</Card.Text>
+			// 			<Card.Link>
+			// 				<button>Edit</button>
+			// 			</Card.Link>
+			// 			<Card.Link>
+			// 				<button onClick={() => {handleDeleteClick(fit.id)}}>Delete</button>
+			// 			</Card.Link>
+			// 		</Card.Body>
+			// 	</Card>
+            //     {/* <h2>{fit.nickname}</h2> */}
+            // </div>
         )
     })
+
 	// <EditForm fit={fit} />
 	// make a new state for EditFit, default will be null
 	// inside of map, if fit._id is equal to my EditFit State, render EditForm and pass fit as prop
