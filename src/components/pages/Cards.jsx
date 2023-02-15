@@ -5,7 +5,6 @@ import EditForm from './EditForm';
 
 export default function Cards(props) {
 
-
     return(
         <div key={`fit-${props.idx}`}>
             <Card style={{ width: '18rem' }}>
@@ -20,7 +19,9 @@ export default function Cards(props) {
                         <Popup trigger=
                             {<button> Edit </button>}
                             modal nested>
-                            <EditForm />
+                            <EditForm 
+                                fit={props.fit}
+                            />
                         </Popup>
                     </Card.Link>
                     <Card.Link>
