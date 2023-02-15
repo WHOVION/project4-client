@@ -75,7 +75,7 @@ export default function Inventory(){
 						<Card.Link href="#">
 							<button>Edit</button>
 						</Card.Link>
-						<Card.Link href="#">
+						<Card.Link >
 							<button onClick={() => {handleDeleteClick(fit.id)}}>Delete</button>
 						</Card.Link>
 					</Card.Body>
