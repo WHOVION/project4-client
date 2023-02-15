@@ -71,3 +71,54 @@
   color: black;
 }
 /* =====Create Page end======= */
+
+/*===== LOG IN PAGE start===== */
+#login-container{
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  flex-direction: column;
+}
+
+#login-message{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+}
+
+#login-form{
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  border: 1px solid gray;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 20px;
+  gap: 10px;
+}
+
+#login-register{
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+#login-btn{
+  background-color: rgb(40, 128, 206);
+  color: white;
+  border: 2px solid white;
+  border-radius: 5px;
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 0 5px rgba(107, 105, 105, 0.2);
+} 
+
+#login-btn:hover {
+  background-color: rgb(246, 239, 239);
+  color: black;
+}
+/*===== LOG IN PAGE end =====*/

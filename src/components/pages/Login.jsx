@@ -45,12 +45,15 @@ export default function Login({ currentUser, setCurrentUser }) {
 	}
 
 	return (
-		<div>
-			<h1>Login to Your Account:</h1>
+		<div id='login-container'>
+			<div id="login-message">
+				<h1>Login to Your Account:</h1>
 
-			<p>{msg}</p>
+				<p>{msg}</p>
+			</div>
+			
 
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit} id="login-form">
 				<label htmlFor='email'>Email:</label>
 				<input 
 					type="email"
@@ -69,9 +72,12 @@ export default function Login({ currentUser, setCurrentUser }) {
 					value={password}
 				/>
 
-				<button type="submit">Login</button>
+				<button type="submit" id="login-btn">Login</button>
 			</form>
-			<p>Don't have an account? Sign up <a href='/register'>here</a></p>
+			<div id="login-register">
+				<p>Don't have an account? Sign up <a href='/register'>here</a></p>
+			</div>
+			
 		</div>
 	)
 }
