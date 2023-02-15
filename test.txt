@@ -1,1 +1,3 @@
-texting
+?'s
+
+reusing components, did we do it wrong?

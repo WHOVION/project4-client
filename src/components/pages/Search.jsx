@@ -1,64 +1,75 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate, Navigate } from 'react-router-dom'
 import jwtDecode from 'jwt-decode'
+import axios from 'axios'
+import ListSearch from './ListSearch'
+import InputSearch from './InputSearch'
 
 const Search = () => {
-    const [ search, setSearch ] = useState('')
-    
-    const handleChange = (e) => {
-        e.preventDefault()
-        setSearch(e.target.value)
-        // console.log('Search button')
+
+   const [ fitsToDisplay, setFitsToDisplay ] = useState([])
+   const [ filterValue, setFilterValue  ] = useState('')
+
+   // make a reset button, resets filter value to empty string, call fetch data again
+
+    const navigate = useNavigate()
+    const token = localStorage.getItem('jwt')
+
+
+    const fetchData = async () => {
+        try {
+            // hit the auth locked endpoint
+            const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/inventory`, {headers: {'Authorization': token}})
+            console.log(response.data, 'goodbuebd')
+            setFitsToDisplay(response.data)
+            // we are trying to set state to this fit components? trying to
+            // this console logs all dbs clothes
+            console.log(response.data, 'hello')
+            console.log(fitsToDisplay, 'hello')
+        } catch (err) {
+            // if the error is a 401 -- that means that auth failed
+            console.warn(err)
+            if (err.response) {
+                if (err.response.status === 401) {
+                    // send the user to the login screen
+                    navigate('/login')
+                }
+            }
+        }
     }
 
-    const [state, setState] = useState({
-        query: '',
-        list: []
-    })
+    useEffect(() => {
+			fetchData()
+	}, [])
 
-    //localStorage = web storage object that allows JS sites and apps to keep key-value pairs in web browser with no expiration date; enables developers to store and retrieve data in the browser - not good practice since data will be lost if the user clears cache
-        //in this case, we are storing the jwt 
 
-        const token = localStorage.getItem('jwt')
-        if(!token) {
-            return <Navigate to="/login" />
+    const handleFilterChange = async (e) => {
+        try {
+        e.preventDefault()
+        const filteredClothes = fitsToDisplay.filter(piece => {
+            return piece.nickname.toLowerCase().includes(e.target.value.toLowerCase())
+        })
+        // this controls state from input
+        setFilterValue(e.target.value)
+        setFitsToDisplay(filteredClothes)
+        } catch (error) {
+            console.warn(error)
         }
-        const decoded = jwtDecode(token)
-        console.log(decoded.id)
+    }
+    
+  
 
     return ( 
-        <div className="search-container">
-
-            <div className='search-title'>
-                <p>Search Closet</p>
-            </div>
-            <form>
-                <div className='search-bar'>
-                    <div className='dropdown'>
-                        <label htmlFor='type'>Filter</label>
-                        <select className='dropdown-content'>
-                            <option 
-                            value='shirts'
-                            >
-                                Shirts
-                            </option>
-                            <option 
-                            value='pants'
-                            >
-                                Pants
-                            </option>
-                            <option 
-                            value='shoes'
-                            >
-                                Shoes
-                            </option>
-                        </select>
-                    </div>
-                    <input type="text" placeholder=""/><button onClick={handleChange}>Search</button>
-                </div>
-            </form>
-            
-            
+        <div>
+            <h1>Search your Closet:</h1>
+                <InputSearch
+                    value={filterValue}
+                    handleFilterChange={handleFilterChange}
+                />
+            <h1>Your filtered</h1>
+                <ListSearch
+                    pieces={fitsToDisplay}
+                />
         </div>
         
      );
