@@ -4,7 +4,7 @@ export default function Cards(props) {
 
 
     return(
-        <div key={`fit-${props.Bodyidx}`}>
+        <div key={`fit-${props.idx}`}>
             <Card style={{ width: '18rem' }}>
                 <Card.Body>
                     <Card.Title>{props.fit.nickname}</Card.Title>
@@ -17,7 +17,7 @@ export default function Cards(props) {
                         <button>Edit</button>
                     </Card.Link>
                     <Card.Link>
-                        <button onClick={() => {props.handleDeleteClick(fit.id)}}>Delete</button>
+                        <button onClick={() => {props.handleDeleteClick(props.fit.id)}}>Delete</button>
                     </Card.Link>
                 </Card.Body>
             </Card>
