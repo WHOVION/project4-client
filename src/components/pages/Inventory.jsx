@@ -1,4 +1,4 @@
-import { useNavigate, Navigate } from 'react-router-dom'
+import { useParams, useNavigate, Navigate } from 'react-router-dom'
 import jwtDecode from 'jwt-decode'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
@@ -9,6 +9,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 export default function Inventory(){
     const [fit, setFit] = useState()
     const navigate = useNavigate()
+
+	let { id } = useParams()
 
     useEffect(() => {
 		const fetchData = async () => {
@@ -35,9 +37,31 @@ export default function Inventory(){
 	}, [])
 
 
+	const handleDeleteClick = async (idx) => {
+		console.log(idx, 'sdlfhjlasghsj')
+		try {
+			// obtaining authorization
+			const token = localStorage.getItem('jwt')
+
+			// request the server delete
+			const url = `${process.env.REACT_APP_SERVER_URL}/api-v1/inventory/${idx}`
+			console.log(url)
+			await axios.delete(url, {headers: {'Authorization': token}})
+			
+			// if the update succeeds, get delete to update in 
+			// axios.get on inventory setFit
+			const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/inventory`, {headers: {'Authorization': token}});
+			// update page
+			setFit(response.data)
+			// set state on inventory
+		} catch(err) {
+			console.log(err)
+		}
+	}
 
 	// === !! CARDS !! === //
 	const fitComponents = fit?.map((fit, idx) => {
+		console.log(idx)
         return(
             <div key={`fit-${idx}`}>
 				<Card style={{ width: '18rem' }}>
@@ -48,8 +72,12 @@ export default function Inventory(){
 						In storage: {fit.status} <br/>
 						Had Since: {fit.createdAt}
 						</Card.Text>
-						<Card.Link href="#">Edit</Card.Link>
-						<Card.Link href="#">Delete</Card.Link>
+						<Card.Link href="#">
+							<button>Edit</button>
+						</Card.Link>
+						<Card.Link href="#">
+							<button onClick={() => {handleDeleteClick(fit.id)}}>Delete</button>
+						</Card.Link>
 					</Card.Body>
 				</Card>
                 {/* <h2>{fit.nickname}</h2> */}
@@ -57,7 +85,7 @@ export default function Inventory(){
         )
     })
 
-
+	
 	
     return(
         <div>
