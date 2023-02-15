@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import "../App.css"
+import Nav from 'react-bootstrap/Nav';
 
 export default function Navbar({ currentUser, handleLogout }) {
 	//  const loggedIn = (
@@ -32,18 +33,21 @@ export default function Navbar({ currentUser, handleLogout }) {
 		<nav>
 			{/* user always sees this section */}
 			<div className='Navbar'>
-				<Link to="/inventory" className='navlink'>
-					<p>Inventory</p>
-				</Link>
-				<Link to="/search" className='navlink'>
-					<p>Search</p>
-				</Link>
-				<Link to="/create" className='navlink'>
-					<p>Create</p>
-				</Link>
-				<Link to="/" onClick={handleLogout} className='navlink'>
-					<p>Logout</p>
-				</Link>
+			<Nav variant="pills" className="justify-content-center" defaultActiveKey="/home">
+				<Nav.Item>
+					<Nav.Link href="/inventory">Inventory</Nav.Link>
+				</Nav.Item>
+				<Nav.Item>
+					<Nav.Link href='/search'>Search</Nav.Link>
+				</Nav.Item>
+				<Nav.Item>
+					<Nav.Link href='/create'>Create</Nav.Link>
+				</Nav.Item>
+				<Nav.Item>
+					<Nav.Link href='/' onClick={handleLogout}>Logout</Nav.Link>
+				</Nav.Item>
+			</Nav>
+
 			</div>
 
 
