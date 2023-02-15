@@ -46,12 +46,15 @@ export default function Register({ currentUser, setCurrentUser }) {
 	}
 
 	return (
-		<div>
-			<h1>Register for an account:</h1>
+		<div id='register-container'>
+			<div id='register-message'>
+				<h1>Register for an account:</h1>
 
-			<p>{msg}</p>
+				<p>{msg}</p>
+			</div>
+			
 
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit} id='register-form'>
 				<label htmlFor='name'>Name:</label>
 				<input 
 					type="text"
@@ -79,7 +82,10 @@ export default function Register({ currentUser, setCurrentUser }) {
 					value={password}
 				/>
 
-				<button type="submit">Register</button>
+				<button type="submit" id='register-btn'>Register</button>
+				<div id="register-rickroll">
+				<p>Don't want to register? <a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ' target="_blank">Click here</a></p>
+			</div>
 			</form>
 		</div>
 	)
