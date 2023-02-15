@@ -6,6 +6,7 @@ import axios from 'axios'
 const Search = () => {
     const [ search, setSearch ] = useState('')
     const [fit, setFit] = useState()
+    const [filteredFits, setFilteredFits] = useState(fit)
     
     const handleChange = (e) => {
         e.preventDefault()
@@ -44,22 +45,30 @@ const Search = () => {
 
     //localStorage = web storage object that allows JS sites and apps to keep key-value pairs in web browser with no expiration date; enables developers to store and retrieve data in the browser - not good practice since data will be lost if the user clears cache
         //in this case, we are storing the jwt 
+    const token = localStorage.getItem('jwt')
+    if(!token) {
+        return <Navigate to="/login" />
+    }
+    const decoded = jwtDecode(token)
+    console.log(decoded.id)
 
-        const token = localStorage.getItem('jwt')
-        if(!token) {
-            return <Navigate to="/login" />
-        }
-        const decoded = jwtDecode(token)
-        console.log(decoded.id)
+    const fitComponents = fit?.map((fit, idx) => {
+        return(
+            <div key={`fit-${idx}`}>
+                <h2>{fit.nickname}</h2>
+                <p>{fit.type}</p>
+            </div>
+        )
+    })
 
-        const fitComponents = fit?.map((fit, idx) => {
-            return(
-                <div key={`fit-${idx}`}>
-                    <h2>{fit.nickname}</h2>
-                    <p>{fit.type}</p>
-                </div>
-            )
+    const filteredList = (e) => {
+        const query = e.target.value 
+        const updatedList = [...filteredFits]
+        updatedList = fitComponents.filter((fit) => {
+            return fit.toLowerCase().indexOf(query.toLowerCase()) !== -1
         })
+        setFilteredFits(updatedList)
+    }
 
     return ( 
         
@@ -74,7 +83,8 @@ const Search = () => {
                         <label htmlFor='type'>Filter</label>
                         <select 
                         className='dropdown-content'
-                        onChange={e => setSearch({ ...search, type: e.target.value })}
+                        onChange={e => setSearch({ ...search, type: e.target.value, filteredList })}
+                        defaultValue='clothing'
                         >
                             <option value='clothing' disabled>Select</option>
                             <option>Shirts</option>
@@ -85,8 +95,13 @@ const Search = () => {
                     <input type="text" placeholder=""/><button onClick={handleChange}>Search</button>
                 </div>
             </form>
-            
             {fitComponents}
+            <ol>
+                {filteredFits?.map((fit, idx) => {
+                    <li key={`fit-${idx}`}>{fit}</li>
+                })}
+            </ol>
+            
         </div>
         
      );
