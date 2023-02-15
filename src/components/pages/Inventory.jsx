@@ -1,4 +1,4 @@
-import { useParams, useNavigate, Navigate } from 'react-router-dom'
+import { useParams, useNavigate, Navigate, Form } from 'react-router-dom'
 import jwtDecode from 'jwt-decode'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
@@ -8,6 +8,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Inventory(){
     const [fit, setFit] = useState()
+
+
     const navigate = useNavigate()
 
 	let { id } = useParams()
@@ -21,7 +23,7 @@ export default function Inventory(){
 					const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/inventory`, {headers: {'Authorization': token}})
                     setFit(response.data)
                     // this console logs all dbs clothes
-                    console.log(response.data)
+                    console.log(response.data, 'ehy')
 				} catch (err) {
 					// if the error is a 401 -- that means that auth failed
 					console.warn(err)
@@ -59,6 +61,8 @@ export default function Inventory(){
 		}
 	}
 
+
+	// better to make cards in new component, copy div and send as prop
 	// === !! CARDS !! === //
 	const fitComponents = fit?.map((fit, idx) => {
 		console.log(idx)
@@ -84,6 +88,12 @@ export default function Inventory(){
             </div>
         )
     })
+	// <EditForm fit={fit} />
+	// make a new state for EditFit, default will be null
+	// inside of map, if fit._id is equal to my EditFit State, render EditForm and pass fit as prop
+	// when click on edit button, set EditFit state to that fits id
+
+
 
 	
 	
