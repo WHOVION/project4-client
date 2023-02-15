@@ -6,67 +6,90 @@ import ListSearch from './ListSearch'
 import InputSearch from './InputSearch'
 
 const Search = () => {
-    const [ search, setSearch ] = useState('')
-    const [fit, setFit] = useState()
-    const [filteredFits, setFilteredFits] = useState(fit)
+    const [fit, setFit] = useState([]) 
+    const [originalFit, setOriginalFit] = useState([])
 
-    const [ fitsToDisplay, setFitsToDisplay ] = useState([])
-    const [ filterValue, setFilterValue  ] = useState('')
+    // const [ fitsToDisplay, setFitsToDisplay ] = useState([])
+    // const [ filterValue, setFilterValue  ] = useState('')
  
     // make a reset button, resets filter value to empty string, call fetch data again
     const navigate = useNavigate()
+    //localStorage = web storage object that allows JS sites and apps to keep key-value pairs in web browser with no expiration date; enables developers to store and retrieve data in the browser - not good practice since data will be lost if the user clears cache
+        //in this case, we are storing the jwt 
+    const token = localStorage.getItem('jwt')
+    // if(!token) {
+    //     return <Navigate to="/login" />
+    // }
+    // const decoded = jwtDecode(token)
+    // console.log(decoded.id)
 
+    // --search button 
     const handleChange = (e) => {
         e.preventDefault()
-        setSearch(e.target.value)
+        
         // console.log('Search button')
     }
 
 
     useEffect(() => {
 		const fetchData = async () => {
-				try {
-					// get the token from local storage
-					const token = localStorage.getItem('jwt')
-					// hit the auth locked endpoint
-					const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/inventory`, {headers: {'Authorization': token}})
-                    setFit(response.data)
-                    // this console logs all dbs clothes
-                    console.log(response.data)
-				} catch (err) {
-					// if the error is a 401 -- that means that auth failed
-					console.warn(err)
-					if (err.response) {
-						if (err.response.status === 401) {
-							// send the user to the login screen
-							navigate('/login')
-						}
-					}
-				}
+            try {
+                // get the token from local storage
+                // const token = localStorage.getItem('jwt')
+                // hit the auth locked endpoint
+                const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/inventory`, {headers: {'Authorization': token}})
+                setFit(response.data)
+                setOriginalFit(response.data)
+                // this console logs all dbs clothes
+                console.log(response.data)
+            } catch (err) {
+                // if the error is a 401 -- that means that auth failed
+                console.warn(err)
+                if (err.response) {
+                    if (err.response.status === 401) {
+                        // send the user to the login screen
+                        navigate('/login')
+                    }
+                }
+            }
 			}
 			fetchData()
 	}, [])
 
-    //localStorage = web storage object that allows JS sites and apps to keep key-value pairs in web browser with no expiration date; enables developers to store and retrieve data in the browser - not good practice since data will be lost if the user clears cache
-        //in this case, we are storing the jwt 
-    const token = localStorage.getItem('jwt')
-    if(!token) {
-        return <Navigate to="/login" />
-    }
-    const decoded = jwtDecode(token)
-    console.log(decoded.id)
+    // const handleFilterChange = async (e) => {
+    //     try {
+    //     e.preventDefault()
+    //     const filteredClothes = fitsToDisplay.filter(piece => {
+    //         return piece.nickname.toLowerCase().includes(e.target.value.toLowerCase())
+    //     })
+    //     // this controls state from input
+    //     setFilterValue(e.target.value)
+    //     setFitsToDisplay(filteredClothes)
+    //     } catch (error) {
+    //         console.warn(error)
+    //     }
+    // }
+    
 
-    const handleFilterChange = async (e) => {
-        try {
-        e.preventDefault()
-        const filteredClothes = fitsToDisplay.filter(piece => {
-            return piece.nickname.toLowerCase().includes(e.target.value.toLowerCase())
-        })
-        // this controls state from input
-        setFilterValue(e.target.value)
-        setFitsToDisplay(filteredClothes)
-        } catch (error) {
-            console.warn(error)
+    // const filteredList = (e) => {
+    //     const query = e.target.value 
+    //     // console.log(`query ${query}`)
+    //     const updatedList = fit?.filter((fit) => {
+    //         // console.log(`fit.type${fit.type}`)
+    //         return fit.type === query 
+    //     })
+    //     setFit(updatedList)
+    // }
+
+    const filteredList = (e) => {
+        const query = e.target.value 
+        if (query === 'All') {
+          setFit(originalFit)
+        } else {
+          const updatedList = originalFit?.filter((fit) => {
+            return fit.type === query 
+          })
+          setFit(updatedList)
         }
     }
 
@@ -79,14 +102,10 @@ const Search = () => {
         )
     })
 
-    const filteredList = (e) => {
-        const query = e.target.value 
-        const updatedList = [...filteredFits]
-        updatedList = fitComponents.filter((fit) => {
-            return fit.toLowerCase().indexOf(query.toLowerCase()) !== -1
-        })
-        setFilteredFits(updatedList)
+    if(!token) {
+        return <Navigate to="/login" />
     }
+    
 
     return ( 
         
@@ -101,10 +120,9 @@ const Search = () => {
                         <label htmlFor='type'>Filter</label>
                         <select 
                         className='dropdown-content'
-                        onChange={e => setSearch({ ...search, type: e.target.value, filteredList })}
-                        defaultValue='clothing'
+                        onChange={ filteredList }
                         >
-                            <option value='clothing' disabled>Select</option>
+                            <option>All</option> 
                             <option>Shirts</option>
                             <option>Pants</option>
                             <option>Shoes</option>
@@ -116,19 +134,14 @@ const Search = () => {
 
             {fitComponents}
 
-            <ol>
-                {filteredFits?.map((fit, idx) => {
-                    <li key={`fit-${idx}`}>{fit}</li>
-                })}
-            </ol>
-            <InputSearch
+            {/* <InputSearch
                 value={filterValue}
                 handleFilterChange={handleFilterChange}
             />
             <h1>Your filtered</h1>
             <ListSearch
                 pieces={fitsToDisplay}
-            />
+            /> */}
         </div>
         
      );
