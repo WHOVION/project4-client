@@ -1,24 +1,28 @@
+import { useState, useEffect } from 'react'
 import { useNavigate, Navigate } from 'react-router-dom'
 import jwtDecode from 'jwt-decode'
-import { useState, useEffect } from 'react'
 import axios from 'axios'
+import ListSearch from './ListSearch'
+import InputSearch from './InputSearch'
 
 const Search = () => {
     const [ search, setSearch ] = useState('')
     const [fit, setFit] = useState()
     const [filteredFits, setFilteredFits] = useState(fit)
-    
+
+    const [ fitsToDisplay, setFitsToDisplay ] = useState([])
+    const [ filterValue, setFilterValue  ] = useState('')
+ 
+    // make a reset button, resets filter value to empty string, call fetch data again
+    const navigate = useNavigate()
+
     const handleChange = (e) => {
         e.preventDefault()
         setSearch(e.target.value)
         // console.log('Search button')
     }
 
-    const [state, setState] = useState({
-        query: '',
-        list: []
-    })
-    
+
     useEffect(() => {
 		const fetchData = async () => {
 				try {
@@ -35,7 +39,7 @@ const Search = () => {
 					if (err.response) {
 						if (err.response.status === 401) {
 							// send the user to the login screen
-							Navigate('/login')
+							navigate('/login')
 						}
 					}
 				}
@@ -51,6 +55,20 @@ const Search = () => {
     }
     const decoded = jwtDecode(token)
     console.log(decoded.id)
+
+    const handleFilterChange = async (e) => {
+        try {
+        e.preventDefault()
+        const filteredClothes = fitsToDisplay.filter(piece => {
+            return piece.nickname.toLowerCase().includes(e.target.value.toLowerCase())
+        })
+        // this controls state from input
+        setFilterValue(e.target.value)
+        setFitsToDisplay(filteredClothes)
+        } catch (error) {
+            console.warn(error)
+        }
+    }
 
     const fitComponents = fit?.map((fit, idx) => {
         return(
@@ -95,13 +113,22 @@ const Search = () => {
                     <input type="text" placeholder=""/><button onClick={handleChange}>Search</button>
                 </div>
             </form>
+
             {fitComponents}
+
             <ol>
                 {filteredFits?.map((fit, idx) => {
                     <li key={`fit-${idx}`}>{fit}</li>
                 })}
             </ol>
-            
+            <InputSearch
+                value={filterValue}
+                handleFilterChange={handleFilterChange}
+            />
+            <h1>Your filtered</h1>
+            <ListSearch
+                pieces={fitsToDisplay}
+            />
         </div>
         
      );
