@@ -31,16 +31,18 @@ StudioFits is a new innovative form of technology used to advance fasion. This m
 * As a user, I would like an easy form to add new stuff to my Closet
 
 ## MVP
-* display the inventory of clothing
-* show the status of each individual clothing (stored, used, washing)
-* allow users to create, read, update, and destroy their clothing
+* Display the inventory of clothing
+* Filter out types of clothing in the seacrh page
+* Allow users to create, read, update, and destroy their clothing
+* Make it so users cannot see any urls except the welcome page if not logged in
 
 ## Stretch Goals
+show the status of each individual clothing (stored, used, washing)
 * provide an up to standard view and styling
 * show that an outfit is avaliable if all clothes are avaliable
 * allow your outfit to be reserved on a day
 * allow users to create an outfit using items of their current storage
-* As a user, I would like to schedule either specific clothing pieces or outfits
-* As a user, I would like to favorite clothing pieces
-* As a user, I would like to favorite outfits
-* As a user, I would like to scroll through 'Favorite outfits' page and be able to see if outfit is available for use
+* Schedule either specific clothing pieces or outfits
+* Favorite clothing pieces
+* Favorite outfits
+* Scroll through 'Favorite outfits' page and be able to see if outfit is available for use   
