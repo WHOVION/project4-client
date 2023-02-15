@@ -42,10 +42,10 @@ const Create = () => {
     
 
     return ( 
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div id="create-container">
+            <form onSubmit={handleSubmit} id="create-form">
 
-                <div>
+                <div id="label-container">
                     
                     <label htmlFor='nickname'>Nickname:</label>
                     <input 
@@ -72,7 +72,7 @@ const Create = () => {
                     </div>
 
                     
-                    <button type='submit'>Create Outfit</button>               
+                    <button id="create-btn" type='submit'>Create Outfit</button>               
                 </div>
             </form>
         </div>

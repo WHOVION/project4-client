@@ -3,6 +3,7 @@ import axios from 'axios'
 import jwt_decode from 'jwt-decode'
 import { Navigate } from 'react-router-dom'
 
+
 export default function Login({ currentUser, setCurrentUser }) {
 	// state for the controlled form
 	const [email, setEmail] = useState('')
@@ -70,6 +71,7 @@ export default function Login({ currentUser, setCurrentUser }) {
 
 				<button type="submit">Login</button>
 			</form>
+			<p>Don't have an account? Sign up <a href='/register'>here</a></p>
 		</div>
 	)
 }
