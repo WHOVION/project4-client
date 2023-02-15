@@ -41,10 +41,13 @@ export default function Inventory(){
 		console.log(idx, 'sdlfhjlasghsj')
 		try {
 			// requrest the server delete
+			const token = localStorage.getItem('jwt')
 			const url = `${process.env.REACT_APP_SERVER_URL}/api-v1/inventory/${idx}`
 			console.log(url)
-			await axios.delete(url)
+			await axios.delete(url, {headers: {'Authorization': token}})
 			// if the update succeeds, get depete to update in 
+			// axios.get on inventory setfit
+			// set state on inventory
 		} catch(err) {
 			console.log(err)
 		}
