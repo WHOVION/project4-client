@@ -7,8 +7,7 @@ import InputSearch from './InputSearch'
 
 const Search = () => {
     const [ search, setSearch ] = useState('')
-    const [fit, setFit] = useState()
-    const [filteredFits, setFilteredFits] = useState(fit)
+    const [fit, setFit] = useState([]) 
 
     const [ fitsToDisplay, setFitsToDisplay ] = useState([])
     const [ filterValue, setFilterValue  ] = useState('')
@@ -81,11 +80,12 @@ const Search = () => {
 
     const filteredList = (e) => {
         const query = e.target.value 
-        const updatedList = [...filteredFits]
-        updatedList = fitComponents.filter((fit) => {
-            return fit.toLowerCase().indexOf(query.toLowerCase()) !== -1
+        console.log(`query ${query}`)
+        const updatedList = fit.filter((fit) => {
+            console.log(`fit.type${fit.type}`)
+            return fit.type === query 
         })
-        setFilteredFits(updatedList)
+        setFit(updatedList)
     }
 
     return ( 
@@ -101,13 +101,14 @@ const Search = () => {
                         <label htmlFor='type'>Filter</label>
                         <select 
                         className='dropdown-content'
-                        onChange={e => setSearch({ ...search, type: e.target.value, filteredList })}
+                        onChange={ filteredList }
                         defaultValue='clothing'
                         >
                             <option value='clothing' disabled>Select</option>
                             <option>Shirts</option>
                             <option>Pants</option>
                             <option>Shoes</option>
+                            <option>All</option> 
                         </select>
                     </div>
                     <input type="text" placeholder=""/><button onClick={handleChange}>Search</button>
@@ -116,11 +117,6 @@ const Search = () => {
 
             {fitComponents}
 
-            <ol>
-                {filteredFits?.map((fit, idx) => {
-                    <li key={`fit-${idx}`}>{fit}</li>
-                })}
-            </ol>
             <InputSearch
                 value={filterValue}
                 handleFilterChange={handleFilterChange}
