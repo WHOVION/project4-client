@@ -80,3 +80,178 @@ const Search = () => {
 }
  
 export default Search;
+
+// import { useState, useEffect } from 'react'
+// import { useNavigate, Navigate } from 'react-router-dom'
+// import jwtDecode from 'jwt-decode'
+// import axios from 'axios'
+// import ListSearch from './ListSearch'
+// import InputSearch from './InputSearch'
+
+// const Search = () => {
+//     // dd filter
+//     // whole l
+//     // const [fit, setFit] = useState([]) 
+//     // filtered
+//     const [originalFit, setOriginalFit] = useState([])
+
+//     // filter by input
+//     const [ fitsToDisplay, setFitsToDisplay ] = useState([])
+//     const [ filterValue, setFilterValue  ] = useState('')
+
+//     const navigate = useNavigate()
+//     const token = localStorage.getItem('jwt')
+
+//     const fetchData = async () => {
+//         try {
+//             const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/inventory`, {headers: {'Authorization': token}})
+//             console.log(response.data, 'goodbuebd')
+//             setFitsToDisplay(response.data)
+//             // josh code
+//             // setFit(response.data)
+//             setOriginalFit(response.data)
+//         } catch (err) {
+//             console.warn(err)
+//             if (err.response) {
+//                 if (err.response.status === 401) {
+//                     navigate('/login')
+//                 }
+//             }
+//         }
+//     }
+
+//     useEffect(() => {
+// 			fetchData()
+// 	}, [])
+
+//     const handleFilterChange = async (e) => {
+//         try {
+//         e.preventDefault()
+//         const filteredClothes = fitsToDisplay.filter(piece => {
+//             return piece.nickname.toLowerCase().includes(e.target.value.toLowerCase())
+//         })
+//         // this controls state from input
+//         setFilterValue(e.target.value)
+//         setFitsToDisplay(filteredClothes)
+//         } catch (error) {
+//             console.warn(error)
+//         }
+//     }
+
+//     const handleReset = async (e) => {
+//         fetchData()
+//         setFilterValue('')
+//         // filteredList(query === 'All')
+//     }
+
+//     // const handleReset = async (e) => {
+//     //     <InputSearch
+//     //         fetchData = { fetchData }
+//     //         setFilterValue = { setFilterValue}
+//     //     />
+//     // }
+
+//     // const handleReset = async (e) => {
+//     //     fetchData()
+//     //     setFilterValue('')
+//     // }
+//     // make a reset button, resets filter value to empty string, call fetch data again
+//     // end of input filter
+
+
+//     // dd filter
+//     // useEffect(() => {
+// 	// 	const fetchData = async () => {
+//     //         try {
+//     //             const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/inventory`, {headers: {'Authorization': token}})
+//     //             setFit(response.data)
+//     //             setOriginalFit(response.data)
+//     //         } catch (err) {
+//     //             console.warn(err)
+//     //             if (err.response) {
+//     //                 if (err.response.status === 401) {
+//     //                     navigate('/login')
+//     //                 }
+//     //             }
+//     //         }
+// 	// 		}
+// 	// 		fetchData()
+// 	// }, [])
+
+//     const filteredList = (e) => {
+//         const query = e.target.value 
+//         if (query === 'All') {
+//           setOriginalFit(fit)
+//         } else {
+//           const updatedList = originalFit?.filter((fit) => {
+//             return fit.type === query 
+//           })
+//           setFitsToDisplay(updatedList)
+//         }
+//     }
+//     // end of dd filter
+
+//     // // filtered
+//     // const [originalFit, setOriginalFit] = useState([])
+
+//     // // filter by input
+//     // const [ fitsToDisplay, setFitsToDisplay ] = useState([])
+//     // const [ filterValue, setFilterValue  ] = useState('')
+
+//     // const fitComponents = fit?.map((fit, idx) => {
+//     //     return(
+//     //         <div key={`fit-${idx}`}>
+//     //             <h2>{fit.nickname}</h2>
+//     //             <p>{fit.type}</p>
+//     //         </div>
+//     //     )
+//     // })
+
+//     if(!token) {
+//         return <Navigate to="/login" />
+//     }
+//     return ( 
+//         // dd filter
+//         <div className="search-container">
+
+//             <div className='search-title'>
+//                 <h1>Search Closet</h1>
+//             </div>
+//             <InputSearch
+//                         // fetchData = { fetchData }
+//                         // setFilterValue = { setFilterValue }
+//                         value={filterValue}
+//                         handleFilterChange={handleFilterChange}
+//                     />
+//             <form>
+//                 <div className='search-bar'>
+//                     <div className='dropdown'>
+//                         <label htmlFor='type'>Filter</label>
+//                         <select 
+//                         className='dropdown-content'
+//                         onChange={ filteredList }
+//                         >
+//                             <option>All</option> 
+//                             <option>Shirts</option>
+//                             <option>Pants</option>
+//                             <option>Shoes</option>
+//                         </select>
+//                     </div>
+//                 </div>
+//             </form>
+//             <button onClick={ handleReset }>Reset</button>
+
+//             {/* {fitComponents} */}
+
+//             <div>
+//                     <ListSearch
+//                         pieces={fitsToDisplay}
+//                         setFitsToDisplay = { setFitsToDisplay }
+//                     />
+//             </div>
+//         </div>
+        
+//      );
+// }
+ 
+// export default Search;
