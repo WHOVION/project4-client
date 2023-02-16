@@ -50,14 +50,12 @@ function EditForm (props) {
         }
         if (validateForm()) {
             try {
-                console.log('asdfjhk', props.formData)
+                // console.log('asdfjhk', props.formData)
                 const response = await axios.put(`${process.env.REACT_APP_SERVER_URL}/api-v1/inventory/${props.fit.id}`, formData, options)
-                
-                console.log('doodoo', response.data)
-                //once the backend gets back to us, navigate to the / route to see all items
-                // navigate('/items') //clicking a link for the user
+                // console.log('doodoo', response.data)
         
-                // redirect the user to the details page
+                const getResponse = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/inventory`, {headers: {'Authorization': token}})
+                props.setFit(response.data)
             } catch (error) {
                 // display an error message to the user
             }

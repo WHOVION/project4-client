@@ -21,6 +21,7 @@ export default function Cards(props) {
                             modal nested>
                             <EditForm 
                                 fit={props.fit}
+                                setFit={props.setFit}
                             />
                         </Popup>
                     </Card.Link>
