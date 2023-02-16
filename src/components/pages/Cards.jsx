@@ -12,7 +12,7 @@ export default function Cards(props) {
                     <Card.Subtitle className="mb-2 text-muted">{props.fitElement.type}</Card.Subtitle>
                     <Card.Text>
                     In storage: {props.fitElement.status} <br/>
-                    Had Since: {props.fitElement.createdAt}
+                    Had Since: {createdAtFormatted}
                     </Card.Text>
                     <Card.Link>
                             <EditForm 
