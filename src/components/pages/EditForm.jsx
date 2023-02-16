@@ -12,11 +12,11 @@ function EditForm (props) {
 
     // identify which for you're editing
     // const theFit = props.fit.find(fit => fit._id === props.idx)
-    console.log(props.fit.id)
+    console.log(props.fitElement.id)
 
     // specify information on what youre editing
     const [formData, setFormData] = useState({
-        nickname: props.fit.nickname
+        nickname: props.fitElement.nickname
     })
 
     // handle function
@@ -54,12 +54,12 @@ function EditForm (props) {
         if (validateForm()) {
             try {
                 // console.log('asdfjhk', props.formData)
-                const response = await axios.put(`${process.env.REACT_APP_SERVER_URL}/api-v1/inventory/${props.fit.id}`, formData, options)
+                const response = await axios.put(`${process.env.REACT_APP_SERVER_URL}/api-v1/inventory/${props.fitElement.id}`, formData, options)
                 // console.log('doodoo', response.data)
                 
                 const getResponse = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/inventory`, {headers: {'Authorization': token}})
-                console.log(getResponse.data)
                 props.setFit(getResponse.data)
+                console.log(getResponse.data)
                 // setFormData({})
             } catch (error) {
                 // display an error message to the user
@@ -77,7 +77,8 @@ function EditForm (props) {
                     <Form>
                         <Form.Group className="mb-3">
                             <Form.Label>Nickname</Form.Label>
-                            <Form.Control placeholder="Enter Nickname" value={formData.nickname} onChange={handleChange} />
+                            {/* removed value,, add value to populate data */}
+                            <Form.Control placeholder="Enter Nickname" onChange={handleChange} />
                         </Form.Group>
 
                         {/* <Form.Group className="mb-3" controlId="formBasicPassword">

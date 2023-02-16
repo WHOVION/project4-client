@@ -12,14 +12,15 @@ export default function Cards(props) {
         <div key={`fit-${props.idx}`}>
             <Card style={{ width: '18rem' }}>
                 <Card.Body>
-                    <Card.Title>{props.fit.nickname}</Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted">{props.fit.type}</Card.Subtitle>
+                    <Card.Title>{props.fitElement.nickname}</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">{props.fitElement.type}</Card.Subtitle>
                     <Card.Text>
-                    In storage: {props.fit.status} <br/>
+                    In storage: {props.fitElement.status} <br/>
                     Had Since: {createdAtFormatted}
                     </Card.Text>
                     <Card.Link>
                             <EditForm 
+                                fitElement={props.fitElement}
                                 fit={props.fit}
                                 setFit={props.setFit}
                             />
