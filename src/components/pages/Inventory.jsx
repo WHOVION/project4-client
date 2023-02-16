@@ -65,36 +65,17 @@ export default function Inventory(){
 
 	// better to make cards in new component, copy div and send as prop
 	// === !! CARDS !! === //
-	const fitComponents = fit?.map((fit, idx) => {
+	const fitComponents = fit?.map((fitElement, idx) => {
 		// console.log(idx)
         return(
 			<Cards 
 				key={`fit-${idx}`}
 				idx={idx}
+				fitElement={fitElement}
 				fit={fit}
 				setFit={setFit}
 				handleDeleteClick={handleDeleteClick}
 			/>
-
-            // <div key={`fit-${idx}`}>
-			// 	<Card style={{ width: '18rem' }}>
-			// 		<Card.Body>
-			// 			<Card.Title>{fit.nickname}</Card.Title>
-			// 			<Card.Subtitle className="mb-2 text-muted">{fit.type}</Card.Subtitle>
-			// 			<Card.Text>
-			// 			In storage: {fit.status} <br/>
-			// 			Had Since: {fit.createdAt}
-			// 			</Card.Text>
-			// 			<Card.Link>
-			// 				<button>Edit</button>
-			// 			</Card.Link>
-			// 			<Card.Link>
-			// 				<button onClick={() => {handleDeleteClick(fit.id)}}>Delete</button>
-			// 			</Card.Link>
-			// 		</Card.Body>
-			// 	</Card>
-            //     {/* <h2>{fit.nickname}</h2> */}
-            // </div>
         )
     })
 
@@ -102,9 +83,6 @@ export default function Inventory(){
 	// make a new state for EditFit, default will be null
 	// inside of map, if fit._id is equal to my EditFit State, render EditForm and pass fit as prop
 	// when click on edit button, set EditFit state to that fits id
-
-
-
 	
 	
     return(
