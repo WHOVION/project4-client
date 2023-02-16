@@ -30,7 +30,7 @@
 }
 /* =====NavBar End===== */
 
-/* Welcome page Start */
+/* =====Welcome page Start===== */
 #welcome-container{
   display: flex;
   flex-direction: column;
@@ -71,8 +71,16 @@
   transition: background-color 0.3s ease;
   box-shadow: 0 0 5px rgba(107, 105, 105, 0.2);
 }
-/* Welcome page End */
 
+#welcome-login:hover {
+  background-color: rgb(246, 239, 239);
+  color: black;
+}
+#welcome-signup:hover {
+  background-color: rgb(246, 239, 239);
+  color: black;
+}
+/* =====Welcome page End =====*/
 
 /* =====Create Page start======= */
 #create-container {
