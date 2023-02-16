@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react'
 import { useNavigate, Navigate } from 'react-router-dom'
 // import jwtDecode from 'jwt-decode'
 import axios from 'axios'
+import Card from 'react-bootstrap/Card';
+import Cards from './Cards'
+import 'bootstrap/dist/css/bootstrap.min.css';
 const options = ['All', 'Shirts', 'Pants', 'Shoes']
 
 const Search = () => {
