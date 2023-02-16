@@ -75,11 +75,11 @@ export default function Login({ currentUser, setCurrentUser }) {
 				/>
 
 				<button type="submit" id="login-btn">Login</button>
-			</form>
 			<div id="login-register">
 				<p>Don't have an account? Sign up <a href='/register'>here</a></p>
 			</div>
 			
+			</form>
 		</div>
 	)
 }

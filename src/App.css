@@ -92,8 +92,8 @@
   display: flex;
   flex-direction: column;
   align-self: center;
-  border: 1px solid gray;
-  background-color: #fff;
+  border: 1px solid gold;
+  background-color: #F9F7F7;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   padding: 20px;
@@ -107,7 +107,7 @@
 }
 
 #login-btn{
-  background-color: rgb(40, 128, 206);
+  background-color: rgb(40, 87, 132);
   color: white;
   border: 2px solid white;
   border-radius: 5px;
@@ -143,8 +143,8 @@
   display: flex;
   flex-direction: column;
   align-self: center;
-  border: 1px solid gray;
-  background-color: #fff;
+  border: 1px solid gold;
+  background-color: #F9F7F7;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   padding: 20px;
@@ -154,11 +154,15 @@
 #register-rickroll{
   display: flex;
   justify-content: center;
-  padding: 10px;
+}
+
+#register-login{
+  display: flex;
+  justify-content: center;
 }
 
 #register-btn{
-  background-color: rgb(40, 128, 206);
+  background-color: rgb(40, 87, 132);
   color: white;
   border: 2px solid white;
   border-radius: 5px;
