@@ -87,8 +87,11 @@ export default function Register({ currentUser, setCurrentUser }) {
 
 				<button type="submit" id='register-btn'>Register</button>
 				<div id="register-rickroll">
-				<p>Don't want to register? <a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ' target="_blank">Click here</a></p>
-			</div>
+					<p>Don't want to register? <a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ' target="_blank">Click here</a></p>
+				</div>
+				<div id="register-login">
+					<p>Already have an account? <a href='/login'>Login here</a></p>
+				</div>
 			</form>
 		</div>
 	)
