@@ -12,23 +12,22 @@ export default function Welcome({currentUser}) {
 	}
 
 	return (
-		<div>
+		<div id='welcome-container'>
 			
 			{/* image */}
-			<div style={{ backgroundImage: 'url(https://www.closetsbydesign.com/wp-content/uploads/2019/02/ClosetWI_8_W_CBD-1200x640.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', height: '80vh', opacity: .7 }}>
+			<div id='welcome-image'style={{ backgroundImage: 'url(https://www.closetsbydesign.com/wp-content/uploads/2019/02/ClosetWI_8_W_CBD-1200x640.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', height: '80vh', opacity: .7 }}>
+			</div>
+			<div id='messagebtn-container'>
+				<div id='welcome-message'>
+					<h3>Welcome to StudioFits</h3>
+				</div>
 
+				<div id='welcomebtn-container'>
+				<button id='welcome-login' href="/login">Log In</button>
+				<button id='welcome-signup' href="/register">Sign Up</button>
+				</div>
+			</div>
 				
-			</div>
-
-
-			hello from welcome
-			<p>this is what everybody can see when they come to the webiste</p>
-			<p>this is will be the Home page if the user is not logged in and will display app details, similar to Hbomax's homepage if you don't an account</p>
-
-			<div>
-			<Button variant="primary" href="/login">Log In</Button>{' '}
-			<Button variant="primary" href="/register">Sign Up</Button>{' '}
-			</div>
 		</div>
 	)
 }
