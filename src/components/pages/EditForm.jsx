@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import Popup from 'reactjs-popup';
 
 function EditForm (props) {
 
@@ -39,10 +40,12 @@ function EditForm (props) {
 
     // handle submit (put route)
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         // get the token from local storage
         const token = localStorage.getItem('jwt')
         // make the auth headers
+
+        
         const options = {
             headers: {
                 'Authorization': token
@@ -53,9 +56,11 @@ function EditForm (props) {
                 // console.log('asdfjhk', props.formData)
                 const response = await axios.put(`${process.env.REACT_APP_SERVER_URL}/api-v1/inventory/${props.fit.id}`, formData, options)
                 // console.log('doodoo', response.data)
-        
+                
                 const getResponse = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/inventory`, {headers: {'Authorization': token}})
-                props.setFit(response.data)
+                console.log(getResponse.data)
+                props.setFit(getResponse.data)
+                // setFormData({})
             } catch (error) {
                 // display an error message to the user
             }
@@ -63,23 +68,33 @@ function EditForm (props) {
     }
 
     return (
-        <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3">
-                <Form.Label>Nickname</Form.Label>
-                <Form.Control placeholder="Enter Nickname" value={formData.nickname} onChange={handleChange} />
-            </Form.Group>
+        <>
+            <Popup trigger=
+                {<button> Edit </button>}
+                modal nested>
+            
+                { close => (
+                    <Form>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Nickname</Form.Label>
+                            <Form.Control placeholder="Enter Nickname" value={formData.nickname} onChange={handleChange} />
+                        </Form.Group>
 
-            {/* <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group> */}
-            <Button variant="primary" type="submit">
-                Submit
-            </Button>
-        </Form>
+                        {/* <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type="password" placeholder="Password" />
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                            <Form.Check type="checkbox" label="Check me out" />
+                        </Form.Group> */}
+                        <Button variant="primary" type="button" onClick={() => {handleSubmit(); close()}}>
+                            Submit
+                        </Button>
+                    </Form>
+                )}
+                
+            </Popup>
+        </>
     );
 }
 
