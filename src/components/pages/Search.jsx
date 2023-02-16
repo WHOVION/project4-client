@@ -61,16 +61,17 @@ const handleDeleteClick = async (idx) => {
       fit.nickname.toLowerCase().includes(filter.nickname.toLowerCase()) && (filter.type === 'All' || fit.type === filter.type))
   })
 
-  const fitComponents = filteredFits.map((fit, id) => {
+  const fitComponents = filteredFits.map((fitElement, id) => {
     return (
       // <div key={`fit-${id}`}>
       //   <h1>{fit.nickname}</h1>
       //   <p>{fit.type}</p>
       // </div>
       <Cards 
-      key={`fit-${id}`}
-				idx={id}
-				fit={fit}
+        key={`fit-${id}`}
+        idx={id}
+        fitElement={fitElement}
+				fit={fitsToDisplay}
 				setFit={setFitsToDisplay}
         handleDeleteClick={handleDeleteClick}
       />
