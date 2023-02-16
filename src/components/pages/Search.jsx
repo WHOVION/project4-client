@@ -31,6 +31,24 @@ const Search = () => {
   useEffect(() => {fetchData()
 }, [])
 
+// handleDelete button function
+const handleDeleteClick = async (idx) => {
+  try {
+    // request the server delete
+    const url = `${process.env.REACT_APP_SERVER_URL}/api-v1/inventory/${idx}`
+    console.log(url)
+    await axios.delete(url, {headers: {'Authorization': token}}) 
+    // if the update succeeds, get delete to update in 
+    // axios.get on inventory setFit
+    const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/inventory`, {headers: {'Authorization': token}});
+    // update page
+    setFitsToDisplay(response.data)
+    // set state on inventory
+  } catch(err) {
+    console.log(err)
+  }
+}
+
   const handleReset = () => {
     setFilter({ nickname: '', type: 'All' })
   }
@@ -45,10 +63,17 @@ const Search = () => {
 
   const fitComponents = filteredFits.map((fit, id) => {
     return (
-      <div key={`fit._id-${id}`}>
-        <h1>{fit.nickname}</h1>
-        <p>{fit.type}</p>
-      </div>
+      // <div key={`fit-${id}`}>
+      //   <h1>{fit.nickname}</h1>
+      //   <p>{fit.type}</p>
+      // </div>
+      <Cards 
+      key={`fit-${id}`}
+				idx={id}
+				fit={fit}
+				setFit={setFitsToDisplay}
+        handleDeleteClick={handleDeleteClick}
+      />
     )
   })
 
