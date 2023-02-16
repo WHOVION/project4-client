@@ -5,7 +5,7 @@ import axios from 'axios'
 import Card from 'react-bootstrap/Card';
 import Cards from './Cards'
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import EditForm from './EditForm'
 
 export default function Inventory(){
     const [fit, setFit] = useState()
@@ -13,7 +13,7 @@ export default function Inventory(){
 
     const navigate = useNavigate()
 
-	let { id } = useParams()
+	// let { id } = useParams()
 
     useEffect(() => {
 		const fetchData = async () => {
@@ -24,7 +24,7 @@ export default function Inventory(){
 					const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/inventory`, {headers: {'Authorization': token}})
                     setFit(response.data)
                     // this console logs all dbs clothes
-                    console.log(response.data, 'ehy')
+                    // console.log(response.data, 'ehy')
 				} catch (err) {
 					// if the error is a 401 -- that means that auth failed
 					console.warn(err)
@@ -66,7 +66,7 @@ export default function Inventory(){
 	// better to make cards in new component, copy div and send as prop
 	// === !! CARDS !! === //
 	const fitComponents = fit?.map((fit, idx) => {
-		console.log(idx)
+		// console.log(idx)
         return(
 			<Cards 
 				key={`fit-${idx}`}
