@@ -77,7 +77,8 @@ function EditForm (props) {
                     <Form>
                         <Form.Group className="mb-3">
                             <Form.Label>Nickname</Form.Label>
-                            <Form.Control placeholder="Enter Nickname" value={formData.nickname} onChange={handleChange} />
+                            {/* removed value,, add value to populate data */}
+                            <Form.Control placeholder="Enter Nickname" onChange={handleChange} />
                         </Form.Group>
 
                         {/* <Form.Group className="mb-3" controlId="formBasicPassword">
