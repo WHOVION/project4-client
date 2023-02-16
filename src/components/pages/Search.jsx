@@ -44,6 +44,7 @@ const Search = () => {
     return (
       <div key={`fit._id-${id}`}>
         <h1>{fit.nickname}</h1>
+        <p>{fit.type}</p>
       </div>
     )
   })
