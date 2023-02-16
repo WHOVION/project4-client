@@ -23,8 +23,8 @@ export default function Welcome({currentUser}) {
 				</div>
 
 				<div id='welcomebtn-container'>
-				<button id='welcome-login' href="/login">Log In</button>
-				<button id='welcome-signup' href="/register">Sign Up</button>
+				<Button id='welcome-login' href="/login">Log In</Button>
+				<Button id='welcome-signup' href="/register">Sign Up</Button>
 				</div>
 			</div>
 				
