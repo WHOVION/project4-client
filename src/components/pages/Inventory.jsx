@@ -88,7 +88,7 @@ export default function Inventory(){
     return(
         <div>
 			
-            <h1>Inventory</h1>
+            <h1><center>Inventory</center></h1>
             {fitComponents}
         </div>
     )
