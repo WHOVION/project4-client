@@ -1,5 +1,4 @@
 import Card from 'react-bootstrap/Card'
-import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import EditForm from './EditForm';
 
@@ -16,14 +15,10 @@ export default function Cards(props) {
                     Had Since: {props.fit.createdAt}
                     </Card.Text>
                     <Card.Link>
-                        <Popup trigger=
-                            {<button> Edit </button>}
-                            modal nested>
                             <EditForm 
                                 fit={props.fit}
                                 setFit={props.setFit}
                             />
-                        </Popup>
                     </Card.Link>
                     <Card.Link>
                         <button onClick={() => {props.handleDeleteClick(props.fit.id)}}>Delete</button>
