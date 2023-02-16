@@ -61,6 +61,7 @@ export default function Login({ currentUser, setCurrentUser }) {
 					placeholder='your email...'
 					onChange={e => setEmail(e.target.value)}
 					value={email}
+					required
 				/>
 
 				<label htmlFor='password'>Password:</label>
@@ -70,6 +71,7 @@ export default function Login({ currentUser, setCurrentUser }) {
 					placeholder='password...'
 					onChange={e => setPassword(e.target.value)}
 					value={password}
+					required
 				/>
 
 				<button type="submit" id="login-btn">Login</button>

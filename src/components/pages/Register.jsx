@@ -62,6 +62,7 @@ export default function Register({ currentUser, setCurrentUser }) {
 					placeholder='your username...'
 					onChange={e => setName(e.target.value)}
 					value={name}
+					required
 				/>
 
 				<label htmlFor='email'>Email:</label>
@@ -71,6 +72,7 @@ export default function Register({ currentUser, setCurrentUser }) {
 					placeholder='your email...'
 					onChange={e => setEmail(e.target.value)}
 					value={email}
+					required
 				/>
 
 				<label htmlFor='password'>Password:</label>
@@ -80,6 +82,7 @@ export default function Register({ currentUser, setCurrentUser }) {
 					placeholder='password...'
 					onChange={e => setPassword(e.target.value)}
 					value={password}
+					required
 				/>
 
 				<button type="submit" id='register-btn'>Register</button>
