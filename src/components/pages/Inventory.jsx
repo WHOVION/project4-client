@@ -72,6 +72,7 @@ export default function Inventory(){
 				key={`fit-${idx}`}
 				idx={idx}
 				fit={fit}
+				setFit={setFit}
 				handleDeleteClick={handleDeleteClick}
 			/>
 
