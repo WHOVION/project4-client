@@ -24,7 +24,7 @@ export default function Inventory(){
 					const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api-v1/inventory`, {headers: {'Authorization': token}})
                     setFit(response.data)
                     // this console logs all dbs clothes
-                    console.log(response.data, 'ehy')
+                    // console.log(response.data, 'ehy')
 				} catch (err) {
 					// if the error is a 401 -- that means that auth failed
 					console.warn(err)

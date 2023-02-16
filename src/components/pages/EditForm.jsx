@@ -11,75 +11,76 @@ function EditForm (props) {
 
     // identify which for you're editing
     // const theFit = props.fit.find(fit => fit._id === props.idx)
-    console.log('1.', fit)
-    console.log('2.', fit._id)
-    console.log('3.', fit)
+    console.log(props.fit.id)
 
     // specify information on what youre editing
     const [formData, setFormData] = useState({
-        nickname: fit.nickname
+        nickname: props.fit.nickname
     })
 
     // handle function
     const handleChange = e => {
+        console.log('12345', e.target.value)
         setFormData({
             ...formData,
-            [e.target.name]:e.target.value
+            nickname: e.target.value
         })
     }
 
     const validateForm = () => {
         const newErrors = {};
-        if (!formData.name) {
-          newErrors.name = 'Name is required';
+        if (!formData.nickname) {
+          newErrors.nickname = 'Name is required';
+          return false
+        } else {
+            return true
         }
-      };
+    };
 
     // handle submit (put route)
-    const handleSubmit = async event => {
-        event.preventDefault();
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         // get the token from local storage
-            const token = localStorage.getItem('jwt')
-            // make the auth headers
-            const options = {
-                headers: {
-                    'Authorization': token
-                }
+        const token = localStorage.getItem('jwt')
+        // make the auth headers
+        const options = {
+            headers: {
+                'Authorization': token
             }
+        }
         if (validateForm()) {
-          try {
-            await axios.put(`${process.env.REACT_APP_SERVER_URL}/api-v1/inventory/${props.idx}`, formData, options)
-            .then(response=>{
-                console.log(response.data)
+            try {
+                console.log('asdfjhk', props.formData)
+                const response = await axios.put(`${process.env.REACT_APP_SERVER_URL}/api-v1/inventory/${props.fit.id}`, formData, options)
+                
+                console.log('doodoo', response.data)
                 //once the backend gets back to us, navigate to the / route to see all items
                 // navigate('/items') //clicking a link for the user
-            
-            })
-    
-            // redirect the user to the details page
-          } catch (error) {
-            // display an error message to the user
-          }
+        
+                // redirect the user to the details page
+            } catch (error) {
+                // display an error message to the user
+            }
         }
     }
 
     return (
-        <Form>
-        <Form.Group className="mb-3">
-            <Form.Label>Nickname</Form.Label>
-            <Form.Control type="email" placeholder="Enter Nickname" />
-        </Form.Group>
+        <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3">
+                <Form.Label>Nickname</Form.Label>
+                <Form.Control placeholder="Enter Nickname" value={formData.nickname} onChange={handleChange} />
+            </Form.Group>
 
-        {/* <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group> */}
-        <Button variant="primary" type="submit">
-            Submit
-        </Button>
+            {/* <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" placeholder="Password" />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                <Form.Check type="checkbox" label="Check me out" />
+            </Form.Group> */}
+            <Button variant="primary" type="submit">
+                Submit
+            </Button>
         </Form>
     );
 }
