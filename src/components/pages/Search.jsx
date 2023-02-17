@@ -107,7 +107,7 @@ const handleDeleteClick = async (idx) => {
       </select>
       <button onClick={handleReset}>Reset</button>
 
-      <div>
+      <div className='cardholder'>
         {fitComponents}
       </div>
     </div>

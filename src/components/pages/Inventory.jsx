@@ -6,6 +6,7 @@ import Card from 'react-bootstrap/Card';
 import Cards from './Cards'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import EditForm from './EditForm'
+import '../css/CardHolder.css'
 
 export default function Inventory(){
     const [fit, setFit] = useState()
@@ -87,9 +88,11 @@ export default function Inventory(){
 	
     return(
         <div>
-			
-            <h1>Inventory</h1>
-            {fitComponents}
+            <h1><center>Inventory</center></h1>
+
+		<div className='cardholder'>
+			{fitComponents}
+		</div>
         </div>
     )
 }
