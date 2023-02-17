@@ -3,7 +3,7 @@ import 'reactjs-popup/dist/index.css';
 import EditForm from './EditForm';
 
 export default function Cards(props) {
-    const createdAtDate = new Date(props.fit.createdAt)
+    const createdAtDate = new Date(props.fitElement.createdAt)
     // getMonth() returns 0 based index so Jan starts at 0, add 1 to display 1 for Jan and 2 for Feb etc
     const createdAtFormatted = `${createdAtDate.getFullYear()}/${createdAtDate.getMonth()+1}/${createdAtDate.getDate()}`
 
