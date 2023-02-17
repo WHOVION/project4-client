@@ -80,6 +80,7 @@ const handleDeleteClick = async (idx) => {
 
   return (
     <div className="search-container">
+      <center>
       <div className="search-title">
         <h1>Search Closet</h1>
       </div>
@@ -106,7 +107,7 @@ const handleDeleteClick = async (idx) => {
         })}
       </select>
       <button onClick={handleReset}>Reset</button>
-
+      </center>
       <div className='cardholder'>
         {fitComponents}
       </div>
