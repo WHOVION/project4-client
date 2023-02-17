@@ -51,3 +51,5 @@ show the status of each individual clothing (stored, used, washing)
 
 ## Post-Project
 I'll say it once and I'll say it again, Projects are probably our favorite things about the cohort. Something about applying all we've learned during the unit and working with it everyday to complete a project definitely helps in connecting the dots and making sense of everything. Our plans post-cohort were similar in terms of we know we wanted to work as fullstack developers and so this project we wanted to get more time/practice in working with both react and a database(in this case, postgres). To end it off, we can proudly say we feel stronger working in fullstack projects.
+
+![](https://i.imgur.com/QERJWUc.png)
