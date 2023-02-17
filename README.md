@@ -20,9 +20,11 @@ StudioFits is a new innovative form of technology used to advance fasion. This m
 ## Technologies
 
 * HTML/CSS
+* Javascript
 * React
 * Postgres
 * Express
+* React-Boostrap
 
 ## User Stories
 * As a user, I want to be able to see my whole 'Closet' in the app
@@ -46,3 +48,6 @@ show the status of each individual clothing (stored, used, washing)
 * Favorite clothing pieces
 * Favorite outfits
 * Scroll through 'Favorite outfits' page and be able to see if outfit is available for use   
+
+## Post-Project
+I'll say it once and I'll say it again, Projects are probably our favorite things about the cohort. Something about applying all we've learned during the unit and working with it everyday to complete a project definitely helps in connecting the dots and making sense of everything. Our plans post-cohort were similar in terms of we know we wanted to work as fullstack developers and so this project we wanted to get more time/practice in working with both react and a database(in this case, postgres). To end it off, we can proudly say we feel stronger working in fullstack projects.
