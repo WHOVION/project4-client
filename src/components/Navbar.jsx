@@ -33,18 +33,18 @@ export default function Navbar({ currentUser, handleLogout }) {
 		<nav>
 			{/* user always sees this section */}
 			<div className='Navbar'>
-			<Nav variant="pills" className="justify-content-center" defaultActiveKey="/home">
+			<Nav variant="pills" className="justify-content-center" defaultActiveKey="/home" style={{ gap: '30px' }}>
 				<Nav.Item>
-					<Nav.Link href="/inventory">Inventory</Nav.Link>
+					<Nav.Link href="/inventory" style={{ border: '3px outset gray', backgroundColor: '#2F4050' }}>Inventory</Nav.Link>
 				</Nav.Item>
 				<Nav.Item>
-					<Nav.Link href='/search'>Search</Nav.Link>
+					<Nav.Link href='/search' style={{ border: '3px outset gray', backgroundColor: '#2F4050' }}>Search</Nav.Link>
 				</Nav.Item>
 				<Nav.Item>
-					<Nav.Link href='/create'>Create</Nav.Link>
+					<Nav.Link href='/create' style={{ border: '3px outset gray', backgroundColor: '#2F4050' }}>Create</Nav.Link>
 				</Nav.Item>
 				<Nav.Item>
-					<Nav.Link href='/' onClick={handleLogout}>Logout</Nav.Link>
+					<Nav.Link href='/' onClick={handleLogout} style={{ border: '3px outset gray', backgroundColor: '#2F4050' }}>Logout</Nav.Link>
 				</Nav.Item>
 			</Nav>
 
