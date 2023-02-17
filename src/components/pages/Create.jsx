@@ -49,6 +49,7 @@ const Create = () => {
                     
                     <label htmlFor='nickname'>Nickname:</label>
                     <input 
+                        required
                         type='text'
                         id='nickname'
                         placeholder='Set Nickname'
@@ -59,10 +60,10 @@ const Create = () => {
                     <div className='dropdown'>
                         <label htmlFor='type'>Type of Clothing</label>
                         <select 
+                        required
                         className='dropdown-content'
                         onChange={e => setForm({ ...form, type: e.target.value })}
                         defaultValue='clothing'
-                        required 
                         >
                             <option value='clothing' disabled>Select type</option>
                             <option>Shirts</option>
