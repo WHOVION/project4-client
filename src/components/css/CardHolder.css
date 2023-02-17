@@ -1,8 +1,13 @@
 .cardholder {
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-left: 78px;
+    margin-right: 78px;
     border: solid green 2px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    gap: 30px
+}
+
+.padding {
+    padding-bottom: 30px;
 }

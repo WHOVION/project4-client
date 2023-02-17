@@ -1,6 +1,7 @@
 import Card from 'react-bootstrap/Card'
 import 'reactjs-popup/dist/index.css';
 import EditForm from './EditForm';
+import '../css/CardHolder.css'
 
 export default function Cards(props) {
     const createdAtDate = new Date(props.fitElement.createdAt)
@@ -9,7 +10,7 @@ export default function Cards(props) {
 
 
     return(
-        <div key={`fit-${props.idx}`}>
+        <div key={`fit-${props.idx}`} >
             <Card style={{ width: '18rem' }}>
                 <Card.Body>
                     <Card.Title>{props.fitElement.nickname}</Card.Title>
