@@ -65,7 +65,7 @@ const Create = () => {
                         onChange={e => setForm({ ...form, type: e.target.value })}
                         defaultValue='clothing'
                         >
-                            <option value='clothing' disabled>Select type</option>
+                            <option value=''>Select type</option>
                             <option>Shirts</option>
                             <option>Pants</option>
                             <option>Shoes</option>
