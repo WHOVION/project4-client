@@ -1,7 +1,7 @@
 .cardholder {
     margin-left: 78px;
     margin-right: 78px;
-    border: solid green 2px;
+    /* border: solid green 2px; */
     display: flex;
     flex-wrap: wrap;
     /* justify-content: space-between; */
