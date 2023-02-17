@@ -81,32 +81,32 @@ const handleDeleteClick = async (idx) => {
   return (
     <div className="search-container">
       <center>
-      <div className="search-title">
-        <h1>Search Closet</h1>
-      </div>
+        <div className="search-title">
+          <h1>Search Closet</h1>
+        </div>
 
-      <input
-        type="text"
-        onChange={(e) => {
-          setFilter({ ...filter, nickname: e.target.value })
-        }}
-        value={filter.nickname}
-      />
-      <select
-        onChange={(e) => {
-          setFilter({ ...filter, type: e.target.value })
-        }}
-        value={filter.type}
-      >
-        {options.map((option) => {
-          return (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          )
-        })}
-      </select>
-      <button onClick={handleReset}>Reset</button>
+        <input
+          type="text"
+          onChange={(e) => {
+            setFilter({ ...filter, nickname: e.target.value })
+          }}
+          value={filter.nickname}
+          />
+        <select
+          onChange={(e) => {
+            setFilter({ ...filter, type: e.target.value })
+          }}
+          value={filter.type}
+          >
+          {options.map((option) => {
+            return (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            )
+          })}
+        </select>
+        <button onClick={handleReset}>Reset</button>
       </center>
       <div className='cardholder'>
         {fitComponents}
