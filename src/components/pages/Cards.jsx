@@ -26,7 +26,7 @@ export default function Cards(props) {
                             />
                     </Card.Link>
                     <Card.Link>
-                        <button onClick={() => {props.handleDeleteClick(props.fit.id)}}>Delete</button>
+                        <button onClick={() => {props.handleDeleteClick(props.fitElement.id)}}>Delete</button>
                     </Card.Link>
                 </Card.Body>
             </Card>
